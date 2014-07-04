@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">eReader</string>
+    <string name="library">Library</string>
+
+    <string name="category_name">%1$s (<b>%2$d</b>)</string>
+
+</resources>
