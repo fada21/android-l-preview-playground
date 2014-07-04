@@ -32,4 +32,4 @@ The URLs given below reveal JSON objects that you shouldquery in your applicatio
 Final query will look like this:
  - https://www.googleapis.com/books/v1/volumes?q=crime&fields=items(volumeInfo(title,authors,imageLinks(thumbnail)))&maxResults=1
 
-Design mockup given attached to assignment is pretty weird and I won't attach that because it's not essential here. More or less my layouts resemble what was designed.
+Design mockup attached to assignment is pretty weird and I won't attach that because it's not essential here. More or less my layouts resemble what was designed.
