@@ -9,14 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_l"
-        android:textSize="@dimen/text_xl"
+        android:text="@string/library"
         android:textColor="@color/accent"
-        android:text="@string/library" />
+        android:textSize="@dimen/text_xl" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

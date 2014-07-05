@@ -1,5 +1,7 @@
 package com.fada21.android.samplereaderlibraryscreen.model;
 
+import android.util.SparseArray;
+
 import java.util.List;
 
 public class Category {
