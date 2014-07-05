@@ -3,9 +3,12 @@ android-l-preview-playground
 Testing new widgets, material theme and tools available in Android-L preview. I've been given assignment to make a simple app while applying for a role. It's the best opportunity to try out new toys provided in L-preview version.
 
 ## I'm playing with
- - RecyclerView with LinearLayoutManager
+ - RecyclerView 
+ - LinearLayoutManager provided with RecyclerView
+ - RecyclerView Adapter
  - CardView
  - Material theme
+ - Theme branding colors
  - ...
 
 ## Android Programming Task
