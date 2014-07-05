@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_l"
         android:textSize="@dimen/text_xl"
+        android:textColor="@color/accent"
         android:text="@string/library" />
 
     <android.support.v7.widget.RecyclerView
