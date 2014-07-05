@@ -3,4 +3,5 @@
     <color name="primary">#79C8EF</color>
     <color name="primary_dark">#45A0CF</color>
     <color name="accent">#CAB09C</color>
+    <color name="ripple">#4C443F</color>
 </resources>
