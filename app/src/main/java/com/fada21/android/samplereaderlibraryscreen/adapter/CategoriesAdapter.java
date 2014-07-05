@@ -17,13 +17,16 @@ import java.util.List;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
     private List<Category> categoriesList;
+    private boolean[] expandedMap;
 
     public CategoriesAdapter(List<Category> categoriesList) {
         this.categoriesList = categoriesList;
+        expandedMap = new boolean[getItemCount()];
     }
 
     public void setData(List<Category> categoriesList) {
         this.categoriesList= categoriesList;
+        expandedMap = new boolean[getItemCount()];
         notifyDataSetChanged();
     }
 

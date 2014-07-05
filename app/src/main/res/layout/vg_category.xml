@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/space_s"
-    android:padding="@dimen/space_m">
+    android:paddingLeft="@dimen/space_m"
+    android:paddingRight="@dimen/space_m"
+    android:paddingTop="@dimen/space_m">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +22,8 @@
                 android:id="@+id/category_heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="5dp"
                 android:background="?android:colorPrimaryDark"
+                android:elevation="5dp"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/space_s"
                 android:text="Category heading (n)" />
@@ -30,8 +32,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/space_s">
+            android:layout_height="match_parent">
 
             <include
                 layout="@layout/vg_book"
@@ -46,5 +47,13 @@
                 android:layout_margin="@dimen/space_l" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="@dimen/space_l"
+            android:paddingRight="@dimen/space_l"
+            android:src="@drawable/ic_expand" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

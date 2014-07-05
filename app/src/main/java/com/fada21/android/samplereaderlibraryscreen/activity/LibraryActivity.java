@@ -27,6 +27,7 @@ public class LibraryActivity extends Activity {
         recyclerView = (RecyclerView) findViewById(R.id.rv);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // recyclerView.setHasFixedSize(true); ?
 
         List<Category> categoryList = new ArrayList<Category>();
         categoryList.add(new Category("Crime", mockBookGenerator(3)));
