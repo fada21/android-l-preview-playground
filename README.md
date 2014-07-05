@@ -11,6 +11,10 @@ Testing new widgets, material theme and tools available in Android-L preview. I'
  - Theme branding colors
  - ...
 
+## Useful links
+ - http://developer.android.com/preview/setup-sdk.html
+ - http://www.teamandroid.com/2014/06/29/install-android-l-sdk-try-android-l-preview-windows-mac/
+
 ## Android Programming Task
 ### Overview:
 Your task is to complete an implementation of a Library page for a typical Android eReader application.
