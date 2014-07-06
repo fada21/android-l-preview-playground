@@ -41,3 +41,5 @@ Final query will look like this:
  - https://www.googleapis.com/books/v1/volumes?q=crime&fields=items(volumeInfo(title,authors,imageLinks(thumbnail)))&maxResults=1
 
 Design mockup attached to assignment is pretty weird and I won't attach that because it's not essential here. More or less my layouts resemble what was designed.
+
+It looks ok on Nexus7 AVD screen.
