@@ -1,14 +1,15 @@
 package com.fada21.android.samplereaderlibraryscreen.adapter;
 
 import android.animation.ObjectAnimator;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Scene;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fada21.android.samplereaderlibraryscreen.R;
+import com.fada21.android.samplereaderlibraryscreen.activity.BookActivity;
+import com.fada21.android.samplereaderlibraryscreen.activity.LibraryActivity;
 import com.fada21.android.samplereaderlibraryscreen.model.Book;
 import com.fada21.android.samplereaderlibraryscreen.model.Category;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder> {
 
@@ -63,7 +69,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         LinearLayout container = prepareContainer(viewHolder, position);
 
-        for (Book book : category.getBooksList()) {
+        LinearLayout row = null;
+        int size = category.getBooksList().size();
+        for (int i = 0; i < size; i++) {
+            final Book book = category.getBooksList().get(i);
             View bookLayout = createBookLayout(book, layoutInflater, container);
 
             final TextView tvTitle = setBookTitle(book, bookLayout);
@@ -73,10 +82,43 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             ImageView ivThumb = (ImageView) bookLayout.findViewById(R.id.thumb);
             Picasso.with(context).load(book.getThumbUrl()).into(ivThumb, new PicassoWithPaletteCallback(tvTitle, tvAuthors, ivThumb));
 
+//            activity transitions not working
+//            ivThumb.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent i = new Intent(context, BookActivity.class);
+//                    i.putExtra(BookActivity.THUMB_EXTRA, book.getThumbUrl());
+//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((LibraryActivity) view.getContext(), view, "thumb");
+//                    context.startActivity(i, options.toBundle());
+//                }
+//            });
+
             setBookLayoutMargins(bookLayout, margin, margin);
-            container.addView(bookLayout);
+
+            if (expandedMap[position]) {
+                if (row == null) {
+                    row = new LinearLayout(context);
+                    row.setLayoutParams(new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+                    row.setOrientation(LinearLayout.HORIZONTAL);
+                }
+                row.addView(bookLayout);
+                if (i % 3 == 2) {
+                    container.addView(row);
+                    row = null;
+                } else if (i == size - 1) {
+                    container.addView(row);
+                }
+
+            } else {
+                container.addView(bookLayout);
+            }
         }
 
+        setExpandButton(viewHolder, position);
+
+    }
+
+    private void setExpandButton(ViewHolder viewHolder, final int position) {
         ImageButton imageButton = viewHolder.btn;
         final Drawable imageButtonDrawable = imageButton.getDrawable();
         imageButtonDrawable.setLevel(expandedMap[position] ? 1 : 0);
@@ -87,7 +129,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 notifyItemChanged(position);
             }
         });
-
     }
 
     private LinearLayout prepareContainer(ViewHolder viewHolder, int position) {

@@ -3,6 +3,7 @@
 
     <style name="AppTheme" parent="android:Theme.Material.Light">
         <item name="android:windowContentTransitions">true</item>
+
         <!-- Main theme colors -->
         <!--   your app's branding color (for the app bar) -->
         <item name="android:colorPrimary">@color/primary</item>

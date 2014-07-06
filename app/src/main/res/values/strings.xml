@@ -6,6 +6,7 @@
 
     <string name="category_name">%1$s (<b>%2$d</b>)</string>
     <string name="refresh">Refresh</string>
+    <string name="book_act_label">Book</string>
 
     <string-array name="categories">
         <item>Crime</item>
