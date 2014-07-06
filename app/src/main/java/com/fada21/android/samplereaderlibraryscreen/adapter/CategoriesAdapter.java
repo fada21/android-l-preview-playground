@@ -1,9 +1,7 @@
 package com.fada21.android.samplereaderlibraryscreen.adapter;
 
 import android.animation.ObjectAnimator;
-import android.app.ActivityOptions;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -19,8 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fada21.android.samplereaderlibraryscreen.R;
-import com.fada21.android.samplereaderlibraryscreen.activity.BookActivity;
-import com.fada21.android.samplereaderlibraryscreen.activity.LibraryActivity;
 import com.fada21.android.samplereaderlibraryscreen.model.Book;
 import com.fada21.android.samplereaderlibraryscreen.model.Category;
 import com.squareup.picasso.Callback;
@@ -114,12 +110,15 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
             }
         }
 
-        setExpandButton(viewHolder, position);
+        setExpandButton(viewHolder, position, size);
 
     }
 
-    private void setExpandButton(ViewHolder viewHolder, final int position) {
+    private void setExpandButton(ViewHolder viewHolder, final int position, int size) {
         ImageButton imageButton = viewHolder.btn;
+        if (size <= 3) {
+            imageButton.setVisibility(View.GONE);
+        }
         final Drawable imageButtonDrawable = imageButton.getDrawable();
         imageButtonDrawable.setLevel(expandedMap[position] ? 1 : 0);
         imageButton.setOnClickListener(new View.OnClickListener() {
