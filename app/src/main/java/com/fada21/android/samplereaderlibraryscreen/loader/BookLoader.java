@@ -28,7 +28,7 @@ public class BookLoader extends AsyncTaskLoader<List<Category>> {
     public List<Category> loadInBackground() {
         List<Category> result = new ArrayList<Category>();
 
-        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("https://www.googleapis.com").setConverter(new JacksonConverter()).setLogLevel(RestAdapter.LogLevel.FULL).build();
+        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("https://www.googleapis.com").setConverter(new JacksonConverter()).build();
         BooksInCategoryService booksInCategoryService = restAdapter.create(BooksInCategoryService.class);
 
         result.add(getBooksInCategories(booksInCategoryService, CategoryEnum.CRIME, 3));

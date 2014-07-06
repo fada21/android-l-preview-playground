@@ -13,14 +13,12 @@ import android.view.MenuItem;
 import com.fada21.android.samplereaderlibraryscreen.R;
 import com.fada21.android.samplereaderlibraryscreen.adapter.CategoriesAdapter;
 import com.fada21.android.samplereaderlibraryscreen.loader.BookLoader;
-import com.fada21.android.samplereaderlibraryscreen.model.Book;
 import com.fada21.android.samplereaderlibraryscreen.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.fada21.android.samplereaderlibraryscreen.loader.StaticLoaderIdConsts.BOOK_LOADER_ID;
-
 
 public class LibraryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<List<Category>> {
 
@@ -31,41 +29,30 @@ public class LibraryActivity extends FragmentActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_library);
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
 
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // recyclerView.setHasFixedSize(true); ?
 
         List<Category> categoryList = new ArrayList<Category>();
-//        categoryList.add(new Category("Crime", mockBookGenerator(3)));
-//        categoryList.add(new Category("Comedy", mockBookGenerator(10)));
-//        categoryList.add(new Category("History", mockBookGenerator(20)));
-//        categoryList.add(new Category("Thriller", mockBookGenerator(5)));
-//        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(categoryList);
 
         categoriesAdapter = new CategoriesAdapter(categoryList);
         recyclerView.setAdapter(categoriesAdapter);
 
-        getSupportLoaderManager().initLoader(BOOK_LOADER_ID, null, LibraryActivity.this);
-
-    }
-
-    private List<Book> mockBookGenerator(int count) {
-        List<Book> l = new ArrayList<Book>();
-        for (int i = 0; i < count; i++) {
-            l.add(new Book(null, null, null));
-        }
-        return l;
+        getSupportLoaderManager().initLoader(BOOK_LOADER_ID, null, this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.library, menu);
+        menu.findItem(R.id.menu_refresh).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_refresh) {
+            getSupportLoaderManager().restartLoader(BOOK_LOADER_ID, null, this);
+        }
         return super.onOptionsItemSelected(item);
     }
 
