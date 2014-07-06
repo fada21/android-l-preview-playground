@@ -1,14 +1,16 @@
 package com.fada21.android.samplereaderlibraryscreen.model;
 
+import java.util.List;
+
 public class Book {
 
     private String title;
-    private String author;
+    private List<String> authors;
     private String thumbUrl;
 
-    public Book(String title, String author, String thumbUrl) {
+    public Book(String title, List<String> authors, String thumbUrl) {
         this.title = title;
-        this.author = author;
+        this.authors = authors;
         this.thumbUrl = thumbUrl;
     }
 
@@ -20,12 +22,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public List<String> getAuthor() {
+        return authors;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor(List<String> author) {
+        this.authors = authors;
     }
 
     public String getThumbUrl() {
@@ -43,9 +45,6 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (author != null ? !author.equals(book.author) : book.author != null) return false;
-        if (thumbUrl != null ? !thumbUrl.equals(book.thumbUrl) : book.thumbUrl != null)
-            return false;
         if (title != null ? !title.equals(book.title) : book.title != null) return false;
 
         return true;
@@ -53,9 +52,6 @@ public class Book {
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (author != null ? author.hashCode() : 0);
-        result = 31 * result + (thumbUrl != null ? thumbUrl.hashCode() : 0);
-        return result;
+        return title != null ? title.hashCode() : 0;
     }
 }

@@ -1,33 +1,31 @@
 package com.fada21.android.samplereaderlibraryscreen.activity;
 
-import android.app.Activity;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.fada21.android.samplereaderlibraryscreen.R;
 import com.fada21.android.samplereaderlibraryscreen.adapter.CategoriesAdapter;
+import com.fada21.android.samplereaderlibraryscreen.loader.BookLoader;
 import com.fada21.android.samplereaderlibraryscreen.model.Book;
 import com.fada21.android.samplereaderlibraryscreen.model.Category;
-import com.fada21.android.samplereaderlibraryscreen.model.CategoryEnum;
-import com.fada21.android.samplereaderlibraryscreen.rest.BooksInCategory;
-import com.fada21.android.samplereaderlibraryscreen.rest.BooksInCategoryService;
-import com.fada21.android.samplereaderlibraryscreen.rest.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit.RestAdapter;
-import retrofit.converter.JacksonConverter;
+import static com.fada21.android.samplereaderlibraryscreen.loader.StaticLoaderIdConsts.BOOK_LOADER_ID;
 
 
-public class LibraryActivity extends Activity {
+public class LibraryActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<List<Category>> {
 
     private RecyclerView recyclerView;
+    private CategoriesAdapter categoriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,37 +37,16 @@ public class LibraryActivity extends Activity {
         // recyclerView.setHasFixedSize(true); ?
 
         List<Category> categoryList = new ArrayList<Category>();
-        categoryList.add(new Category("Crime", mockBookGenerator(3)));
-        categoryList.add(new Category("Comedy", mockBookGenerator(10)));
-        categoryList.add(new Category("History", mockBookGenerator(20)));
-        categoryList.add(new Category("Thriller", mockBookGenerator(5)));
-        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(categoryList);
+//        categoryList.add(new Category("Crime", mockBookGenerator(3)));
+//        categoryList.add(new Category("Comedy", mockBookGenerator(10)));
+//        categoryList.add(new Category("History", mockBookGenerator(20)));
+//        categoryList.add(new Category("Thriller", mockBookGenerator(5)));
+//        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(categoryList);
 
+        categoriesAdapter = new CategoriesAdapter(categoryList);
         recyclerView.setAdapter(categoriesAdapter);
 
-        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint("https://www.googleapis.com").setConverter(new JacksonConverter()).setLogLevel(RestAdapter.LogLevel.FULL).build();
-        final BooksInCategoryService booksInCategoryService = restAdapter.create(BooksInCategoryService.class);
-
-        AsyncTask<String, Void, String> asyncTask = new AsyncTask<String, Void, String>() {
-
-            @Override
-            protected String doInBackground(String... voids) {
-                StringBuilder sb = new StringBuilder();
-                BooksInCategory books = booksInCategoryService.getBooks(CategoryEnum.CRIME.getRoute(), 3);
-                for (Item item : books.getItems()) {
-                    String title = item.getVolumeInfo().getTitle();
-                    sb.append(title).append(",");
-                }
-                return sb.toString();
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                Toast.makeText(LibraryActivity.this, s, Toast.LENGTH_SHORT).show();
-            }
-        };
-        asyncTask.execute("");
+        getSupportLoaderManager().initLoader(BOOK_LOADER_ID, null, LibraryActivity.this);
 
     }
 
@@ -90,5 +67,25 @@ public class LibraryActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public Loader<List<Category>> onCreateLoader(int loaderId, Bundle params) {
+        return new BookLoader(this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<Category>> listLoader, List<Category> categories) {
+        if (listLoader.getId() == BOOK_LOADER_ID) {
+            categoriesAdapter.setData(categories);
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Category>> listLoader) {
+        if (listLoader.getId() == BOOK_LOADER_ID) {
+            categoriesAdapter.setData(null);
+        }
     }
 }

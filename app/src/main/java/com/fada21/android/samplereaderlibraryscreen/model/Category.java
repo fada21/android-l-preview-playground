@@ -6,21 +6,20 @@ import java.util.List;
 
 public class Category {
 
-    private String name;
+    private int index;
     private List<Book> bookList;
 
-    public Category(String name, List<Book> bookList) {
-        if (name == null) throw new IllegalArgumentException("Category must hava a name!");
-        this.name = name;
+    public Category(int index, List<Book> bookList) {
+        this.index = index;
         this.bookList = bookList;
     }
 
-    public String getName() {
-        return name;
+    public int getIndex() {
+        return index;
     }
 
-    public void setName(String mName) {
-        this.name = mName;
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public List<Book> getBooksList() {
@@ -38,13 +37,13 @@ public class Category {
 
         Category category = (Category) o;
 
-        if (!name.equals(category.name)) return false;
+        if (index != category.index) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return index;
     }
 }

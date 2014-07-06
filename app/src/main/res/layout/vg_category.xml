@@ -35,7 +35,6 @@
             android:scrollbars="none"
             android:layout_height="wrap_content">
 
-
             <LinearLayout
                 android:id="@+id/books"
                 android:layout_width="wrap_content"
