@@ -59,6 +59,7 @@ public class LibraryActivity extends FragmentActivity implements LoaderManager.L
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_refresh) {
+            progressView.setVisibility(View.VISIBLE);
             getSupportLoaderManager().restartLoader(BOOK_LOADER_ID, null, this);
         }
         return super.onOptionsItemSelected(item);
@@ -78,12 +79,15 @@ public class LibraryActivity extends FragmentActivity implements LoaderManager.L
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
                     progressView.setVisibility(View.GONE);
+                    progressView.setAlpha(1);
                 }
             });
-            recyclerView.setVisibility(View.VISIBLE);
-            recyclerView.setAlpha(0);
-            recyclerView.animate().alpha(1);
-            categoriesAdapter.setData(categories);
+            if (recyclerView.getVisibility() != View.VISIBLE) {
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView.setAlpha(0);
+                recyclerView.animate().alpha(1);
+                categoriesAdapter.setData(categories);
+            }
 
         }
     }
