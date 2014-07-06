@@ -9,6 +9,7 @@ Testing new widgets, material theme and tools available in Android-L preview. I'
  - CardView
  - Material theme
  - Theme branding colors
+ - Palette
  - Activities transitions
 
 ## Useful links
