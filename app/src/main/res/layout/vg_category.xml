@@ -30,26 +30,40 @@
 
         </android.support.v7.widget.CardView>
 
-        <HorizontalScrollView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:scrollbars="none"
             android:layout_height="wrap_content">
 
+            <HorizontalScrollView
+                android:id="@+id/collapsed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/books_collapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
             <LinearLayout
-                android:id="@+id/books"
+                android:id="@+id/books_expanded"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
+        </FrameLayout>
 
         <ImageButton
+            android:id="@+id/btn_expand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingLeft="@dimen/space_l"
             android:paddingRight="@dimen/space_l"
-            android:src="@drawable/ic_expand" />
+            android:src="@drawable/ic_exp_or_col" />
     </LinearLayout>
 </android.support.v7.widget.CardView>
