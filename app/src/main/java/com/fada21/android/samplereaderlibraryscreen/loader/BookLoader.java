@@ -6,9 +6,9 @@ import android.support.v4.content.AsyncTaskLoader;
 import com.fada21.android.samplereaderlibraryscreen.model.Book;
 import com.fada21.android.samplereaderlibraryscreen.model.Category;
 import com.fada21.android.samplereaderlibraryscreen.model.CategoryEnum;
-import com.fada21.android.samplereaderlibraryscreen.rest.BooksInCategory;
+import com.fada21.android.samplereaderlibraryscreen.rest.json.BooksInCategory;
 import com.fada21.android.samplereaderlibraryscreen.rest.BooksInCategoryService;
-import com.fada21.android.samplereaderlibraryscreen.rest.Item;
+import com.fada21.android.samplereaderlibraryscreen.rest.json.Item;
 
 import java.util.ArrayList;
 import java.util.List;

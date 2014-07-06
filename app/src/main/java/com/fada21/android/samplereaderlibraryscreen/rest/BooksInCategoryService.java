@@ -1,5 +1,7 @@
 package com.fada21.android.samplereaderlibraryscreen.rest;
 
+import com.fada21.android.samplereaderlibraryscreen.rest.json.BooksInCategory;
+
 import retrofit.http.GET;
 import retrofit.http.Query;
 

@@ -13,9 +13,23 @@
         android:textColor="@color/accent"
         android:textSize="@dimen/text_xl" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:indeterminate="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </LinearLayout>

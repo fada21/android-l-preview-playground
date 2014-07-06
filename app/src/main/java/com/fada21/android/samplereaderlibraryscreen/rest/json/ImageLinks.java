@@ -1,4 +1,4 @@
-package com.fada21.android.samplereaderlibraryscreen.rest;
+package com.fada21.android.samplereaderlibraryscreen.rest.json;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -9,25 +9,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "volumeInfo"
+        "thumbnail"
 })
-public class Item {
+public class ImageLinks {
 
-    @JsonProperty("volumeInfo")
-    private VolumeInfo volumeInfo;
+    @JsonProperty("thumbnail")
+    private String thumbnail;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("volumeInfo")
-    public VolumeInfo getVolumeInfo() {
-        return volumeInfo;
+    @JsonProperty("thumbnail")
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    @JsonProperty("volumeInfo")
-    public void setVolumeInfo(VolumeInfo volumeInfo) {
-        this.volumeInfo = volumeInfo;
+    @JsonProperty("thumbnail")
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     @JsonAnyGetter

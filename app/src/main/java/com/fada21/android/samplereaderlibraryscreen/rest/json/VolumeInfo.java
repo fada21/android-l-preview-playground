@@ -1,4 +1,4 @@
-package com.fada21.android.samplereaderlibraryscreen.rest;
+package com.fada21.android.samplereaderlibraryscreen.rest.json;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
